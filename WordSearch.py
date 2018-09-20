@@ -20,7 +20,7 @@ def try_coordinates(coordinates, i):
     candidate_coordinates.append(current_letter_coordinate)
     for j in range(i + 1, len(coordinates)):
         next_letter_coordinates = coordinates[j]
-        next_letter_coordinate = find_next_adjacent_coordinate(next_letter_coordinates, current_letter_coordinate)
+        next_letter_coordinate = find_next_horizontal_coordinate(next_letter_coordinates, current_letter_coordinate)
         if next_letter_coordinate is None:
             break
         else:
@@ -29,9 +29,10 @@ def try_coordinates(coordinates, i):
     return candidate_coordinates
 
 
-def find_next_adjacent_coordinate(next_letter_coordinates, current_letter_coordinate):
+def find_next_horizontal_coordinate(next_letter_coordinates, current_letter_coordinate):
     for j in range(len(next_letter_coordinates)):
-        if next_letter_coordinates[j][1] == current_letter_coordinate[1] + 1:
+        if next_letter_coordinates[j][0] == current_letter_coordinate[0] \
+                and next_letter_coordinates[j][1] == current_letter_coordinate[1] + 1:
             return next_letter_coordinates[j]
 
 

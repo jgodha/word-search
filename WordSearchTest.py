@@ -5,7 +5,7 @@ from WordSearch import search
 class WordSearchTest(unittest.TestCase):
     grid = [
             ['z', 'y', 'x', 'w', 'v'],
-            ['a', 't', 's', 'r', 'q'],
+            ['a', 'r', 'a', 't', 's'],
             ['p', 'b', 'a', 't', 'o'],
             ['n', 'm', 'l', 'k', 'j'],
             ['i', 'h', 'g', 'b', 'e']
