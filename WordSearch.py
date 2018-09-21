@@ -12,6 +12,11 @@ def search(grid, word):
             candidate_coordinates = try_horizontal_backward_coordinates(coordinates, starting_letter_coordinate)
             if len(candidate_coordinates) == len(word):
                 result += report_coordinates(candidate_coordinates)
+            else:
+                candidate_coordinates = try_vertical_downward_coordinates(coordinates, starting_letter_coordinate)
+                if len(candidate_coordinates) == len(word):
+                    result += report_coordinates(candidate_coordinates)
+
     return result
 
 
@@ -50,6 +55,17 @@ def find_horizontal_backward_coordinate(next_letter_coordinates, current_letter_
     for j in range(len(next_letter_coordinates)):
         if next_letter_coordinates[j][0] == current_letter_coordinate[0] \
                 and next_letter_coordinates[j][1] == current_letter_coordinate[1] - 1:
+            return next_letter_coordinates[j]
+
+
+def try_vertical_downward_coordinates(coordinates, current_letter_coordinate):
+    return try_coordinates(coordinates, current_letter_coordinate, find_vertical_downward_coordinate)
+
+
+def find_vertical_downward_coordinate(next_letter_coordinates, current_letter_coordinate):
+    for j in range(len(next_letter_coordinates)):
+        if next_letter_coordinates[j][0] == current_letter_coordinate[0] + 1 \
+                and next_letter_coordinates[j][1] == current_letter_coordinate[1]:
             return next_letter_coordinates[j]
 
 
