@@ -23,6 +23,10 @@ class WordSearchTest(unittest.TestCase):
         result = search(self.grid, "star")
         self.assertEqual("star: (1,4)(1,3)(1,2)(1,1)", result)
 
+    def test_word_horizontal_start_letter_first_occurrence_not_used(self):
+        result = search(self.grid, "tab")
+        self.assertEqual("tab: (2,3)(2,2)(2,1)", result)
+
 
 if __name__ == '__main__':
     unittest.main()
