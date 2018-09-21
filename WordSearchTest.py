@@ -19,6 +19,10 @@ class WordSearchTest(unittest.TestCase):
         result = search(self.grid, "bat")
         self.assertEqual("bat: (2,1)(2,2)(2,3)", result)
 
+    def test_word_horizontal_backward(self):
+        result = search(self.grid, "star")
+        self.assertEqual("star: (1,4)(1,3)(1,2)(1,1)", result)
+
 
 if __name__ == '__main__':
     unittest.main()
