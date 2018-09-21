@@ -14,11 +14,9 @@ def locate_in_grid(grid, ch):
     return coordinates
 
 
-def try_coordinates(coordinates, i, find_next_coordinate):
-    candidate_coordinates = []
-    current_letter_coordinate = coordinates[0][i]
-    candidate_coordinates.append(current_letter_coordinate)
-    for j in range(i + 1, len(coordinates)):
+def try_coordinates(coordinates, current_letter_coordinate, find_next_coordinate):
+    candidate_coordinates = [current_letter_coordinate]
+    for j in range(1, len(coordinates)):
         next_letter_coordinates = coordinates[j]
         next_letter_coordinate = find_next_coordinate(next_letter_coordinates, current_letter_coordinate)
         if next_letter_coordinate is None:
@@ -36,8 +34,8 @@ def find_horizontal_forward_coordinate(next_letter_coordinates, current_letter_c
             return next_letter_coordinates[j]
 
 
-def try_horizontal_forward_coordinates(coordinates, i):
-    return try_coordinates(coordinates, i, find_horizontal_forward_coordinate)
+def try_horizontal_forward_coordinates(coordinates, current_letter_coordinate):
+    return try_coordinates(coordinates, current_letter_coordinate, find_horizontal_forward_coordinate)
 
 
 def find_horizontal_backward_coordinate(next_letter_coordinates, current_letter_coordinate):
@@ -47,8 +45,8 @@ def find_horizontal_backward_coordinate(next_letter_coordinates, current_letter_
             return next_letter_coordinates[j]
 
 
-def try_horizontal_backward_coordinates(coordinates, i):
-    return try_coordinates(coordinates, i, find_horizontal_backward_coordinate)
+def try_horizontal_backward_coordinates(coordinates, current_letter_coordinate):
+    return try_coordinates(coordinates, current_letter_coordinate, find_horizontal_backward_coordinate)
 
 
 def report_coordinates(coordinates):
@@ -64,11 +62,12 @@ def search(grid, word):
     result = word + ": "
 
     for i in range(len(coordinates[0])):
-        candidate_coordinates = try_horizontal_forward_coordinates(coordinates, i)
+        current_letter_coordinate = coordinates[0][i]
+        candidate_coordinates = try_horizontal_forward_coordinates(coordinates, current_letter_coordinate)
         if len(candidate_coordinates) == len(word):
             result += report_coordinates(candidate_coordinates)
         else:
-            candidate_coordinates = try_horizontal_backward_coordinates(coordinates, i)
+            candidate_coordinates = try_horizontal_backward_coordinates(coordinates, current_letter_coordinate)
             if len(candidate_coordinates) == len(word):
                 result += report_coordinates(candidate_coordinates)
     return result
