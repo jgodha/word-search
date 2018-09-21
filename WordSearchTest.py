@@ -33,7 +33,7 @@ class WordSearchTest(unittest.TestCase):
 
     def test_word_search_vertical_upward(self):
         result = search(self.grid, "betty")
-        self.assertEqual("ask: (4,3)(3,3)(2,3)(1,3)(0,3)", result)
+        self.assertEqual("betty: (4,3)(3,3)(2,3)(1,3)(0,3)", result)
 
 
 if __name__ == '__main__':
