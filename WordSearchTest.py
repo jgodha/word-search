@@ -7,8 +7,8 @@ class WordSearchTest(unittest.TestCase):
             ['z', 'y', 'x', 'w', 'v'],
             ['a', 'r', 'a', 't', 's'],
             ['p', 'b', 'a', 't', 'o'],
-            ['n', 'm', 'l', 'k', 'j'],
-            ['i', 'h', 'g', 'b', 'e']
+            ['n', 'm', 's', 'k', 'j'],
+            ['i', 'h', 'k', 'b', 'e']
     ]
 
     def test_word_horizontal_forward_every_letter_occurs_once(self):
@@ -26,6 +26,10 @@ class WordSearchTest(unittest.TestCase):
     def test_word_horizontal_start_letter_first_occurrence_not_used(self):
         result = search(self.grid, "tab")
         self.assertEqual("tab: (2,3)(2,2)(2,1)", result)
+
+    def test_word_vertical_downward(self):
+        result = search(self.grid, "ask")
+        self.assertEqual("ask: (2,2)(3,2)(4,2)", result)
 
 
 if __name__ == '__main__':
